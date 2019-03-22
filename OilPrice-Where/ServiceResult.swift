@@ -9,11 +9,11 @@
 import Foundation
 
 enum Result<T> {
-    case success(T)
-    case error(Error)
+   case success(T)
+   case error(Error)
 }
 
 enum ServiceError: Error {
-    case invalidURL
-    case parsingError
+   case invalidURL
+   case parsingError
 }

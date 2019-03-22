@@ -9,12 +9,12 @@
 import UIKit
 
 class MainHeaderView: UIView {
-
-    @IBOutlet private weak var geoLabel : UILabel!
-    
-    func configure(with geoCode: String?) {
-        guard let geoCode = geoCode else { return }
-        geoLabel.text = geoCode
-    }
-
+   
+   @IBOutlet private weak var geoLabel : UILabel!
+   
+   func configure(with geoCode: String?) {
+      guard let geoCode = geoCode else { return }
+      geoLabel.text = geoCode
+   }
+   
 }
