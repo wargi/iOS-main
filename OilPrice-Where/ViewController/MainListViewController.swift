@@ -431,11 +431,11 @@ class MainListViewController: UIViewController {
          gasStations = DefaultData.shared.data!
       }
       
-      for i in 0 ..< gasStations.count {
+      for (index, gasStation) in gasStations.enumerated() {
          annotations.append(CustomMarkerAnnotation()) // 마커 생성
-         annotations[i].coordinate = Converter.convertKatecToWGS(katec: KatecPoint(x: gasStations[i].katecX, y: gasStations[i].katecY)) // 마커 위치 선점
-         annotations[i].stationInfo = gasStations[i] // 주유소 정보 전달
-         self.appleMapView.addAnnotation(annotations[i]) // 맵뷰에 마커 생성
+         annotations[index].coordinate = Converter.convertKatecToWGS(katec: KatecPoint(x: gasStation.katecX, y: gasStation.katecY)) // 마커 위치 선점
+         annotations[index].stationInfo = gasStation // 주유소 정보 전달
+         self.appleMapView.addAnnotation(annotations[index]) // 맵뷰에 마커 생성
          
       }
    }

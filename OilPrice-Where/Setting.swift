@@ -49,7 +49,7 @@ final class Preferences {
    static func getAppKey() -> String {
       var appKey = ""
       
-      switch arc4random_uniform(6) {
+      switch Int.random(in: 0...5) {
       case 0:
          appKey = "F302180619"
       case 1:
