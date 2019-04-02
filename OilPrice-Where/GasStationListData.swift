@@ -32,7 +32,7 @@ struct GasStation: Decodable {
    let brand: String
    let name: String // 매장 이름
    let price: Int // 가격
-   let distance: Double // 기준 위치로부터의 거리 (단위 : m)
+   var distance: Double // 기준 위치로부터의 거리 (단위 : m)
    let katecX: Double // X좌표(KATEC)
    let katecY: Double // Y좌표(KATEC)
    

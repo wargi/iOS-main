@@ -30,54 +30,58 @@ extension MainListViewController: CLLocationManagerDelegate {
    }
    
    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-      let newLocation = locations.last
+      guard let newLocation = locations.last else { return }
       
-      if newLocation != nil {
-         currentCoordinate = newLocation!.coordinate
-         
-         let katecPoint = Converter.convertWGS84ToKatec(coordinate: newLocation!.coordinate)
-         
-         if !performingReverseGeocoding {
-            performingReverseGeocoding = true
-            geocoder.reverseGeocodeLocation(newLocation!, completionHandler: {
-               placemarks, error in
-               self.lastGeocodingError = error
-               // 에러가 없고, 주소 정보가 있으며 주소가 공백이지 않을 시
-               if error == nil, let p = placemarks, !p.isEmpty {
-                  self.currentPlacemark = p.last!
-               } else {
-                  self.currentPlacemark = nil
-               }
-               
-               self.performingReverseGeocoding = false
-               self.headerView.configure(with: self.string(from: self.currentPlacemark))
-            })
-         }
-         if let lastLocation = oldLocation {
-            let distance: CLLocationDistance = newLocation!.distance(from: lastLocation)
-            if distance < 50.0 &&
-               lastOilType == DefaultData.shared.oilType &&
-               lastFindRadius == DefaultData.shared.radius &&
-               lastBrandType == DefaultData.shared.brandType &&
-               lastFavorites == DefaultData.shared.favoriteArr {
-               stopLocationManager()
-               self.tableView.reloadData()
+      currentCoordinate = newLocation.coordinate
+      
+      let katecPoint = Converter.convertWGS84ToKatec(coordinate: self.appleMapView.centerCoordinate)
+      print(self.appleMapView.centerCoordinate)
+      print(newLocation.coordinate)
+      if !performingReverseGeocoding {
+         performingReverseGeocoding = true
+         geocoder.reverseGeocodeLocation(newLocation, completionHandler: {
+            placemarks, error in
+            self.lastGeocodingError = error
+            // 에러가 없고, 주소 정보가 있으며 주소가 공백이지 않을 시
+            if error == nil, let p = placemarks, !p.isEmpty {
+               self.currentPlacemark = p.last!
             } else {
-               reset()
-               gasStationListData(katecPoint: KatecPoint(x: katecPoint.x, y: katecPoint.y))
-               stopLocationManager()
-               oldLocation = newLocation
-               lastOilType = DefaultData.shared.oilType
-               lastFindRadius = DefaultData.shared.radius
-               lastBrandType = DefaultData.shared.brandType
-               zoomToLatestLocation(with: currentCoordinate!)
+               self.currentPlacemark = nil
             }
+            
+            self.performingReverseGeocoding = false
+            self.headerView.configure(with: self.string(from: self.currentPlacemark))
+         })
+      }
+      
+      if let lastLocation = oldLocation {
+         let distance: CLLocationDistance = newLocation.distance(from: lastLocation)
+         let mapDistance = newLocation.distance(from: CLLocation(latitude: appleMapView.centerCoordinate.latitude,
+                                                                 longitude: appleMapView.centerCoordinate.longitude))
+         print(mapDistance)
+         if mapDistance < 50.0 &&
+            lastOilType == DefaultData.shared.oilType &&
+            lastFindRadius == DefaultData.shared.radius &&
+            lastBrandType == DefaultData.shared.brandType &&
+            lastFavorites == DefaultData.shared.favoriteArr {
+            stopLocationManager()
+            self.tableView.reloadData()
          } else {
-            zoomToLatestLocation(with: currentCoordinate!)
+            reset()
+            oldLocation = newLocation
             gasStationListData(katecPoint: KatecPoint(x: katecPoint.x, y: katecPoint.y))
             stopLocationManager()
-            oldLocation = newLocation
+            lastOilType = DefaultData.shared.oilType
+            lastFindRadius = DefaultData.shared.radius
+            lastBrandType = DefaultData.shared.brandType
+//            zoomToLatestLocation(with: currentCoordinate!)
          }
+      } else {
+         reset()
+         zoomToLatestLocation(with: currentCoordinate!)
+         oldLocation = newLocation
+         gasStationListData(katecPoint: KatecPoint(x: katecPoint.x, y: katecPoint.y))
+         stopLocationManager()
       }
       
       // 인증 상태가 변경 되었을 때

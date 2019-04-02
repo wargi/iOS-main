@@ -134,4 +134,17 @@ extension MainListViewController: MKMapViewDelegate {
       
       return renderer
    }
+   
+   func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
+      guard let location = oldLocation else { return }
+      let dis = location.distance(from: CLLocation(latitude: self.appleMapView.centerCoordinate.latitude,
+                                                   longitude: self.appleMapView.centerCoordinate.longitude))
+      
+      if dis > 50 && self.refindConstant.constant != 0 {
+         UIView.animate(withDuration: 0.4) {
+            self.refindConstant.constant = 0
+            self.view.layoutIfNeeded()
+         }
+      }
+   }
 }

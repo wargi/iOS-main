@@ -34,6 +34,8 @@ class MainListViewController: UIViewController {
    @IBOutlet weak var currentLocationButtonTop: NSLayoutConstraint! // 현재 위치 Top Layout
    @IBOutlet private weak var popupView : PopupView!
    var isSelectedAnnotion: Bool = false
+   @IBOutlet weak var refindBtn : UIButton!
+   @IBOutlet weak var refindConstant: NSLayoutConstraint!
    
    // Detail View
    @IBOutlet weak var detailView : DetailView! // Detail View
@@ -226,6 +228,15 @@ class MainListViewController: UIViewController {
       toListButton.layer.shadowOffset = CGSize(width: 1, height: 1)
       toListButton.layer.shadowRadius = 2
       
+      self.refindBtn.layer.cornerRadius = 18
+      self.refindBtn.layer.shadowColor = UIColor.black.cgColor
+      self.refindBtn.layer.shadowOpacity = 0.5
+      self.refindBtn.layer.shadowOffset = CGSize(width: 1, height: 1)
+      self.refindBtn.layer.shadowRadius = 2
+      
+      self.refindBtn.layer.shadowPath = UIBezierPath(roundedRect: self.refindBtn.bounds, cornerRadius: 18).cgPath
+      self.refindBtn.addTarget(self, action: #selector(self.refindAction(_:)), for: .touchUpInside)
+      
       // Draw a shadow
       toListButton.layer.shadowPath = UIBezierPath(roundedRect: toListButton.bounds, cornerRadius: self.toListButton.bounds.height / 2).cgPath
       
@@ -288,7 +299,19 @@ class MainListViewController: UIViewController {
    func reset() {
       appleMapView.removeAnnotations(annotations)
       annotations = []
+      sortData.removeAll()
       selectIndexPath = nil
+   }
+   
+   func sortArr(to dataArr: [GasStation]){
+      for (i, data) in dataArr.enumerated() {
+         let coordinate = Converter.convertKatecToWGS(katec: KatecPoint(x: data.katecX, y: data.katecY))
+         let staionLocation = CLLocation(latitude: coordinate.latitude, longitude: coordinate.longitude)
+         let dis = self.oldLocation?.distance(from: staionLocation)
+         
+         self.sortData.insert(data, at: i)
+         self.sortData[i].distance = Double(dis!)
+      }
    }
    func gasStationListData(katecPoint: KatecPoint){
       ServiceList.gasStationList(x: katecPoint.x,
@@ -307,7 +330,9 @@ class MainListViewController: UIViewController {
                                           DefaultData.shared.data = gasStationData.result.gasStations
                                              .filter { $0.brand == DefaultData.shared.brandType }
                                        }
-                                       self.sortData = DefaultData.shared.data!.sorted(by: {$0.distance < $1.distance})
+                                       self.sortArr(to: DefaultData.shared.data!)
+                                       DefaultData.shared.data = self.sortData
+                                       self.sortData.sort {$0.distance < $1.distance}
                                        self.popupView.configure()
                                        self.showMarker()
                                        self.refreshControl.endRefreshing()
@@ -333,6 +358,15 @@ class MainListViewController: UIViewController {
       oldLocation = nil
       reset()
       configureLocationServices()
+   }
+   
+   @objc func refindAction(_ btn: UIButton) {
+      UIView.animate(withDuration: 0.3) {
+         self.refindConstant.constant = 100
+         self.view.layoutIfNeeded()
+      }
+      self.reset()
+      self.configureLocationServices()
    }
    
    // TableView List Sort Func(가격, 거리)
@@ -543,6 +577,7 @@ class MainListViewController: UIViewController {
       guard let currentPlacemark = placemark else {
          return nil
       }
+      
       // address
       var address = ""
       if let s = currentPlacemark.administrativeArea {
