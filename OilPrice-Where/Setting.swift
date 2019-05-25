@@ -49,7 +49,7 @@ final class Preferences {
    static func getAppKey() -> String {
       var appKey = ""
       
-      switch Int.random(in: 0...5) {
+      switch Int.random(in: 0...8) {
       case 0:
          appKey = "F302180619"
       case 1:
@@ -60,6 +60,12 @@ final class Preferences {
          appKey = "F305180619"
       case 4:
          appKey = "F306180619"
+      case 5:
+         appKey = "F507190403"
+      case 6:
+         appKey = "F508190403"
+      case 7:
+         appKey = "F509190403"
       default:
          appKey = "F307180619"
       }
