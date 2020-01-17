@@ -10,6 +10,7 @@ target 'OilPrice-Where' do
   pod 'Firebase/Database'
   pod 'SwiftyPlistManager'
   pod 'SCLAlertView'
+  pod 'RxSwift'
   # Pods for OilPrice-Where
 
 end
