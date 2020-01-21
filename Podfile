@@ -6,11 +6,31 @@ target 'OilPrice-Where' do
   use_frameworks!
 
   pod 'Alamofire'
+
+  # Server Framework
   pod 'Firebase/Core'
   pod 'Firebase/Database'
+
+  # Etc Framework
   pod 'SwiftyPlistManager'
   pod 'SCLAlertView'
+
+  # RxSwift: Main Framework
   pod 'RxSwift'
+  pod 'RxCocoa'
+
+  # RxSwift: Etc
+  pod 'NSObject+Rx'
+  pod 'RxSwiftExt'
+  pod 'Action'
+  pod 'RxDataSources'
+  pod "RxGesture"
+  pod 'RxReachability'
+  pod 'RxKeyboard'
+
+  # Networking
+  pod 'RxAlamofire'
+
   # Pods for OilPrice-Where
 
 end

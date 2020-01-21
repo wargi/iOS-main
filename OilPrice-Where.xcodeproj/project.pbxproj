@@ -50,9 +50,9 @@
 		8ED7F9E822045A9100AB6626 /* PopupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ED7F9E722045A9100AB6626 /* PopupView.swift */; };
 		8EDAF7D821295AEF00422552 /* InitialSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EDAF7D721295AEF00422552 /* InitialSettingViewController.swift */; };
 		8EDAF7DA212D7EF300422552 /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EDAF7D9212D7EF300422552 /* DetailView.swift */; };
-		8EDC1B3D22397E6600726B93 /* MainListMKMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EDC1B3C22397E6600726B93 /* MainListMKMap.swift */; };
-		8EDC1B3F2239822600726B93 /* MainListTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EDC1B3E2239822600726B93 /* MainListTableView.swift */; };
-		8EDC1B412239825A00726B93 /* MainListCoreLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EDC1B402239825A00726B93 /* MainListCoreLocation.swift */; };
+		8EDC1B3D22397E6600726B93 /* MainList+MKMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EDC1B3C22397E6600726B93 /* MainList+MKMap.swift */; };
+		8EDC1B3F2239822600726B93 /* MainList+TableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EDC1B3E2239822600726B93 /* MainList+TableView.swift */; };
+		8EDC1B412239825A00726B93 /* MainList+CoreLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EDC1B402239825A00726B93 /* MainList+CoreLocation.swift */; };
 		8EE0A2F921DDF11E00C159D0 /* SelectGasstationTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EE0A2F821DDF11E00C159D0 /* SelectGasstationTableViewController.swift */; };
 		8EE0A2FB21DDF49E00C159D0 /* BrandTypeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EE0A2FA21DDF49E00C159D0 /* BrandTypeTableViewCell.swift */; };
 		8EED89582131CC670093B07A /* FavoriteView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8EED89572131CC670093B07A /* FavoriteView.xib */; };
@@ -109,9 +109,9 @@
 		8ED7F9E722045A9100AB6626 /* PopupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopupView.swift; sourceTree = "<group>"; };
 		8EDAF7D721295AEF00422552 /* InitialSettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialSettingViewController.swift; sourceTree = "<group>"; };
 		8EDAF7D9212D7EF300422552 /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
-		8EDC1B3C22397E6600726B93 /* MainListMKMap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainListMKMap.swift; sourceTree = "<group>"; };
-		8EDC1B3E2239822600726B93 /* MainListTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainListTableView.swift; sourceTree = "<group>"; };
-		8EDC1B402239825A00726B93 /* MainListCoreLocation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainListCoreLocation.swift; sourceTree = "<group>"; };
+		8EDC1B3C22397E6600726B93 /* MainList+MKMap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MainList+MKMap.swift"; sourceTree = "<group>"; };
+		8EDC1B3E2239822600726B93 /* MainList+TableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MainList+TableView.swift"; sourceTree = "<group>"; };
+		8EDC1B402239825A00726B93 /* MainList+CoreLocation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MainList+CoreLocation.swift"; sourceTree = "<group>"; };
 		8EE0A2F821DDF11E00C159D0 /* SelectGasstationTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectGasstationTableViewController.swift; sourceTree = "<group>"; };
 		8EE0A2FA21DDF49E00C159D0 /* BrandTypeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrandTypeTableViewCell.swift; sourceTree = "<group>"; };
 		8EED89572131CC670093B07A /* FavoriteView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FavoriteView.xib; sourceTree = "<group>"; };
@@ -184,6 +184,13 @@
 			path = Cell;
 			sourceTree = "<group>";
 		};
+		8E0429B323D6F59F005F5466 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
 		8E167D422107E7240066A59E /* AppDelegate */ = {
 			isa = PBXGroup;
 			children = (
@@ -240,6 +247,7 @@
 				8EDC1B3B22397E4B00726B93 /* Extension */,
 				8E4DAF0920F5EC2400E4FD92 /* Model */,
 				8E4DAF0A20F5EC2700E4FD92 /* Services */,
+				8E0429B323D6F59F005F5466 /* ViewModel */,
 				8E7FFE3F20F5EB46006CED48 /* ViewController */,
 				8E7FFE4120F5EBD2006CED48 /* View */,
 				76E226312117EFAD00D719A8 /* Cell */,
@@ -313,9 +321,9 @@
 		8EDC1B3B22397E4B00726B93 /* Extension */ = {
 			isa = PBXGroup;
 			children = (
-				8EDC1B3C22397E6600726B93 /* MainListMKMap.swift */,
-				8EDC1B3E2239822600726B93 /* MainListTableView.swift */,
-				8EDC1B402239825A00726B93 /* MainListCoreLocation.swift */,
+				8EDC1B3C22397E6600726B93 /* MainList+MKMap.swift */,
+				8EDC1B3E2239822600726B93 /* MainList+TableView.swift */,
+				8EDC1B402239825A00726B93 /* MainList+CoreLocation.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -485,7 +493,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8EDC1B3D22397E6600726B93 /* MainListMKMap.swift in Sources */,
+				8EDC1B3D22397E6600726B93 /* MainList+MKMap.swift in Sources */,
 				8ECE0DA62122E11100FF2B46 /* MainHeaderView.swift in Sources */,
 				8ECE0D032118963000FF2B46 /* CustomAnnotationView.swift in Sources */,
 				8ECE0DAA212385FB00FF2B46 /* AllPriceData.swift in Sources */,
@@ -516,12 +524,12 @@
 				29B226432121FDC60012B2F6 /* AverageCostData.swift in Sources */,
 				8ED7F9E822045A9100AB6626 /* PopupView.swift in Sources */,
 				8ECE0D54211AF0C300FF2B46 /* DefaultData.swift in Sources */,
-				8EDC1B3F2239822600726B93 /* MainListTableView.swift in Sources */,
+				8EDC1B3F2239822600726B93 /* MainList+TableView.swift in Sources */,
 				76760DFF213875DE00E27CA6 /* NoticeTableViewCell.swift in Sources */,
 				8ECE0D7C211C3CFC00FF2B46 /* OilTypeTableViewCell.swift in Sources */,
 				8EED895A2131CC9F0093B07A /* FavoriteView.swift in Sources */,
 				7638DFCD213932AB008E6675 /* NoticeDetailViewController.swift in Sources */,
-				8EDC1B412239825A00726B93 /* MainListCoreLocation.swift in Sources */,
+				8EDC1B412239825A00726B93 /* MainList+CoreLocation.swift in Sources */,
 				765830AD212699FE006DFE2E /* InformationGasStaion.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
